@@ -2,8 +2,6 @@ package arrays.m189;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 /**
  * @author lihaocheng
  * @createtime 2022/4/4
@@ -15,12 +13,13 @@ public class RotateArray {
         rotate(new int[]{-1},2);
     }
 
-    //新开一个数组，从k开始复制参数过去
+    //解法1：新开一个数组，从k开始复制参数过去
     public void rotate(int[] nums, int k) {
+        //边界条件
         if (nums.length<=1){
             return;
         }
-        //k比数组长
+        //k比数组长，对k取余
         if (nums.length<=k){
             k=k%nums.length;
         }
@@ -33,8 +32,7 @@ public class RotateArray {
         for (int i=0;i<len-k;i++){
             result[start++]=nums[i];
         }
-        for (int i=0;i<len;i++){
-            nums[i]=result[i];
-        }
+        //复制数组
+        System.arraycopy(result, 0, nums, 0, len);
     }
 }
